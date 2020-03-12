@@ -1,6 +1,10 @@
 import mmcv
 
 
+def underwater_classes():
+    return ['holothurian', 'echinus', 'scallop', 'starfish']
+
+
 def wider_face_classes():
     return ['face']
 
@@ -95,7 +99,8 @@ dataset_aliases = {
     'imagenet_vid': ['vid', 'imagenet_vid', 'ilsvrc_vid'],
     'coco': ['coco', 'mscoco', 'ms_coco'],
     'wider_face': ['WIDERFaceDataset', 'wider_face', 'WDIERFace'],
-    'cityscapes': ['cityscapes']
+    'cityscapes': ['cityscapes'],
+    'underwater': ['underwater']
 }
 
 
