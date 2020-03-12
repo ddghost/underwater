@@ -1,7 +1,7 @@
 配置项目
 
-* git clone https://github.com/zhengye1995/underwater-objection-detection.git
-* cd underwater-objection-detection
+* git clone https://github.com/ddghost/underwater.git
+* cd underwater
 * mkdir data
 * cd data
 * mkdir pretrained
@@ -26,6 +26,9 @@
 生成数据集
 * python tools/data_process/xml2coco.py
 * python tools/data_process/generate_test_json.py
+
+预训练模型下载
+- 下载mmdetection官方开源的casacde-rcnn-r50-fpn-2x的COCO预训练模型[cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth](https://open-mmlab.oss-cn-beijing.aliyuncs.com/mmdetection/models/cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth)并放置于 data/pretrained 目录下
 
 训练
 * chmod +x tools/dist_train.sh 
