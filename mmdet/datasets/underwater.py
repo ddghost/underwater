@@ -95,3 +95,5 @@ class Underwater(CustomDataset):
             seg_map=seg_map)
 
         return ann
+    def format_results(self, results, **kwargs):
+        self.coco.format_results(results, **kwargs)
