@@ -98,4 +98,3 @@ class Underwater(CocoDataset):
 
     def format_results(self, results, jsonfile_prefix=None, **kwargs):
         super().format_results(results, **kwargs)
-        print('!!!!!!!!!!!!!!!!!!')

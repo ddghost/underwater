@@ -262,7 +262,7 @@ class CocoDataset(CustomDataset):
 
     def format_results(self, results, jsonfile_prefix=None, **kwargs):
         """Format the results to json (standard format for COCO evaluation).
-
+        
         Args:
             results (list): Testing results of the dataset.
             jsonfile_prefix (str | None): The prefix of json files. It includes
@@ -274,6 +274,7 @@ class CocoDataset(CustomDataset):
                 the json filepaths, tmp_dir is the temporal directory created
                 for saving json files when jsonfile_prefix is not specified.
         """
+        print('coco')
         assert isinstance(results, list), 'results must be a list'
         assert len(results) == len(self), (
             'The length of results is not equal to the dataset len: {} != {}'.
