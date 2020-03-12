@@ -95,3 +95,7 @@ class Underwater(CocoDataset):
             seg_map=seg_map)
 
         return ann
+
+    def format_results(self, results, jsonfile_prefix=None, **kwargs):
+        super().format_results(results, **kwargs)
+        print('!!!!!!!!!!!!!!!!!!')
