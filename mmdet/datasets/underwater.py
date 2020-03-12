@@ -1,12 +1,12 @@
 import numpy as np
 from pycocotools.coco import COCO
 
-from .custom import CustomDataset
+from .coco import CocoDataset
 from .registry import DATASETS
 
 
 @DATASETS.register_module
-class Underwater(CustomDataset):
+class Underwater(CocoDataset):
 
     CLASSES = ('holothurian', 'echinus', 'scallop', 'starfish')
 
@@ -95,5 +95,3 @@ class Underwater(CustomDataset):
             seg_map=seg_map)
 
         return ann
-    def format_results(self, results, **kwargs):
-        self.coco.format_results(results, **kwargs)
