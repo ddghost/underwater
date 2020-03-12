@@ -1,12 +1,16 @@
-配置项目
+修改了dataset/underwater的源码
+只能用cascade_rcnn_r50_fpn_1x
+可能还有bug
 
+配置项目
 * git clone https://github.com/ddghost/underwater.git
 * cd underwater
 * mkdir data
-* cd data
-* mkdir pretrained
 * mkdir results
 * mkdir submit
+* cd data
+* mkdir pretrained
+
 * 把test-A-image.zip  train.zip解压到data成为 data/test-A-image data/train
 * mkdir data/train/annotations
 
@@ -34,6 +38,8 @@
 * chmod +x tools/dist_train.sh 
 * ./tools/dist_train.sh configs/cascade_rcnn_r50_fpn_1x.py 4
 
-输出测试结果(还没试过，暂时没训练好)
+输出测试结果
 * chmod +x tools/dist_test.sh
-* ./tools/dist_test.sh configs/cascade_rcnn_r50_fpn_1x.py ./work_dirs/cascade_rcnn_r50_fpn_1x/latest.pth 4  --format_only --options "outfile_prefix=./cascade_rcnn_r50_fpn_1x_results"
+* ./tools/dist_test.sh configs/cascade_rcnn_r50_fpn_1x.py ./work_dirs/cascade_rcnn_r50_fpn_1x/latest.pth 4  --format_only --options "jsonfile_prefix=./cas_r50"
+* mv cas_r50.bbox.json results
+* python tools/post_process/json2submit.py --test_json cas_r50.bbox.json --submit_file cas_r50.csv
