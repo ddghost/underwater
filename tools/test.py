@@ -165,6 +165,7 @@ def main():
             print('\nwriting results to {}'.format(args.out))
             mmcv.dump(outputs, args.out)
         kwargs = {} if args.options is None else args.options
+        print(**kwargs)
         if args.format_only:
             dataset.format_results(outputs, **kwargs)
         if args.eval:
