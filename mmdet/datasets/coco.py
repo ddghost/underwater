@@ -274,12 +274,12 @@ class CocoDataset(CustomDataset):
                 the json filepaths, tmp_dir is the temporal directory created
                 for saving json files when jsonfile_prefix is not specified.
         """
-        print('coco')
+
         assert isinstance(results, list), 'results must be a list'
         assert len(results) == len(self), (
             'The length of results is not equal to the dataset len: {} != {}'.
             format(len(results), len(self)))
-
+        print(jsonfile_prefix)
         if jsonfile_prefix is None:
             tmp_dir = tempfile.TemporaryDirectory()
             jsonfile_prefix = osp.join(tmp_dir.name, 'results')

@@ -97,4 +97,5 @@ class Underwater(CocoDataset):
         return ann
 
     def format_results(self, results, jsonfile_prefix=None, **kwargs):
-        super().format_results(results, **kwargs)
+        result_files, tmp_dir = super().format_results(results, **kwargs)
+        print(result_files, tmp_dir)

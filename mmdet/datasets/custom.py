@@ -153,7 +153,6 @@ class CustomDataset(Dataset):
         return self.pipeline(results)
 
     def format_results(self, results, **kwargs):
-        print('custom')
         pass
 
     def evaluate(self,
