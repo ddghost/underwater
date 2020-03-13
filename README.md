@@ -42,9 +42,10 @@
 * chmod +x tools/dist_test.sh
 * ./tools/dist_test.sh configs/cascade_rcnn_r50_fpn_1x.py ./work_dirs/cascade_rcnn_r50_fpn_1x/latest.pth 4  --format_only --options "jsonfile_prefix=./cas_r50"
 * mv cas_r50.bbox.json results
+在submit文件夹生成结果
 * python tools/post_process/json2submit.py --test_json cas_r50.bbox.json --submit_file cas_r50.csv
 
 
-* ./tools/dist_train.sh configs/cascade_rcnn_r34_fpn_1x_dp.py 4
+* ./tools/dist_train.sh configs/cascade_rcnn_r50_fpn_1x_dp_layer3.py 4
 
 #CUDA_VISIBLE_DEVICES
