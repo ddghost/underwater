@@ -5,7 +5,7 @@ model = dict(
     pretrained=None,
     backbone=dict(
         type='ResNetDP',
-        depth=34,
+        depth=50,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
         frozen_stages=1,
@@ -189,7 +189,7 @@ test_pipeline = [
 ]
 data = dict(
     imgs_per_gpu=1,
-    workers_per_gpu=2,
+    workers_per_gpu=1,
     train=dict(
         type=dataset_type,
         ann_file='data/train/annotations/train.json',
