@@ -355,7 +355,7 @@ class ResNetDP(nn.Module):
                  depth,
                  in_channels=3,
                  num_stages=4,
-                 strides=(1, 1, 2, 2),
+                 strides=(1, 2, 1, 2),
                  dilations=(1, 1, 1, 1),
                  out_indices=(0, 1, 2, 3),
                  style='pytorch',
