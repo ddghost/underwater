@@ -452,6 +452,7 @@ class ResNetDP(nn.Module):
         self.norm1_name, norm1 = build_norm_layer(self.norm_cfg, 64, postfix=1)
         self.add_module(self.norm1_name, norm1)
         self.relu = nn.ReLU(inplace=True)
+        self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
     def _freeze_stages(self):
         if self.frozen_stages >= 0:
@@ -496,6 +497,7 @@ class ResNetDP(nn.Module):
         x = self.conv1(x)
         x = self.norm1(x)
         x = self.relu(x)
+        x = self.maxpool(x)
         outs = []
         for i, layer_name in enumerate(self.res_layers):
             res_layer = getattr(self, layer_name)
