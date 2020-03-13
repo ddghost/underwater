@@ -46,3 +46,5 @@
 
 
 * ./tools/dist_train.sh configs/cascade_rcnn_r34_fpn_1x_dp.py 4
+
+#CUDA_VISIBLE_DEVICES
