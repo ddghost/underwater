@@ -505,7 +505,7 @@ class ResNetDP(nn.Module):
         return tuple(outs)
 
     def train(self, mode=True):
-        super(ResNet, self).train(mode)
+        super(ResNetDP, self).train(mode)
         self._freeze_stages()
         if mode and self.norm_eval:
             for m in self.modules():
