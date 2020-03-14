@@ -411,7 +411,7 @@ class ResNetDP(nn.Module):
             dilation = dilations[i]
             dcn = self.dcn if self.stage_with_dcn[i] else None
             gcb = self.gcb if self.stage_with_gcb[i] else None
-            if(i < 5):
+            if(i < 4):
                 planes = 64 * 2**i
             else:
                 planes = 512
