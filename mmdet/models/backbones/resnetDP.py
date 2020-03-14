@@ -347,6 +347,7 @@ class ResNetDP(nn.Module):
         18: (BasicBlock, (2, 2, 2, 2)),
         34: (BasicBlock, (3, 4, 6, 3)),
         50: (Bottleneck, (3, 4, 6, 3)),
+        53: (Bottleneck, (3, 4, 6, 3, 1)),
         101: (Bottleneck, (3, 4, 23, 3)),
         152: (Bottleneck, (3, 8, 36, 3))
     }
@@ -355,7 +356,7 @@ class ResNetDP(nn.Module):
                  depth,
                  in_channels=3,
                  num_stages=4,
-                 strides=(1, 2, 1, 2),
+                 strides=(1, 2, 2, 2),
                  dilations=(1, 1, 1, 1),
                  out_indices=(0, 1, 2, 3),
                  style='pytorch',
@@ -376,7 +377,7 @@ class ResNetDP(nn.Module):
             raise KeyError('invalid depth {} for resnet'.format(depth))
         self.depth = depth
         self.num_stages = num_stages
-        assert num_stages >= 1 and num_stages <= 4
+        assert num_stages >= 1 and num_stages <= 5
         self.strides = strides
         self.dilations = dilations
         assert len(strides) == len(dilations) == num_stages
@@ -410,7 +411,10 @@ class ResNetDP(nn.Module):
             dilation = dilations[i]
             dcn = self.dcn if self.stage_with_dcn[i] else None
             gcb = self.gcb if self.stage_with_gcb[i] else None
-            planes = 64 * 2**i
+            if(i < 5):
+                planes = 64 * 2**i
+            else:
+                planes = 512
             res_layer = make_res_layer(
                 self.block,
                 self.inplanes,
