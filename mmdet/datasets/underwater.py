@@ -98,3 +98,12 @@ class Underwater(CocoDataset):
 
     def format_results(self, results, **kwargs):
         result_files, tmp_dir = super().format_results(results, **kwargs)
+
+    def prepare_test_img(self, idx):
+        img_info = self.img_infos[idx]
+        ann_info = self.get_ann_info(idx)
+        results = dict(img_info=img_info)
+        if self.proposals is not None:
+            results['proposals'] = self.proposals[idx]
+        self.pre_pipeline(results)
+        return self.pipeline(results)
