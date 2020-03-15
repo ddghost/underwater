@@ -28,8 +28,8 @@
 * pip install -v -e .  # or "python setup.py develop"
 
 生成数据集
-* python tools/data_process/xml2coco.py
-* python tools/data_process/generate_test_json.py
+* python tools/data_process/xml2coco.py data/train
+* python tools/data_process/generate_test_json.py 
 
 预训练模型下载
 - 下载mmdetection官方开源的casacde-rcnn-r50-fpn-2x的COCO预训练模型[cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth](https://open-mmlab.oss-cn-beijing.aliyuncs.com/mmdetection/models/cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth)并放置于 data/pretrained 目录下
@@ -43,7 +43,7 @@
 * ./tools/dist_test.sh configs/cascade_rcnn_r50_fpn_1x.py ./work_dirs/cascade_rcnn_r50_fpn_1x/latest.pth 4  --format_only --options "jsonfile_prefix=./cas_r50"
 * mv cas_r50.bbox.json results
 在submit文件夹生成结果
-* python tools/post_process/json2submit.py --test_json cas_r50.bbox.json --submit_file cas_r50.csv
+* python tools/post_process/json2submit.py --test_json results/cas_r50.bbox.json --submit_file cas_r50.csv
 
 
 

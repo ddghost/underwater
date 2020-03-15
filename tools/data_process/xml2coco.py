@@ -1,7 +1,6 @@
-
 import os.path as osp
 import xml.etree.ElementTree as ET
-
+import sys
 import mmcv
 
 from mmdet.core import underwater_classes
@@ -77,8 +76,9 @@ def cvt_annotations(img_path, xml_path, out_file):
 
 
 def main():
-    xml_path = 'data/train/box'
-    img_path = 'data/train/image'
+    dirName = sys.argv[1]
+    xml_path = osp.join(dirName ,'box')
+    img_path = osp.join(dirName ,'image')
     print('processing {} ...'.format("xml format annotations"))
     cvt_annotations(img_path, xml_path, 'data/train/annotations/train.json')
     print('Done!')
