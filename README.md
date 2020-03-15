@@ -37,6 +37,7 @@
 训练
 * chmod +x tools/dist_train.sh 
 * ./tools/dist_train.sh configs/cascade_rcnn_r50_fpn_1x.py 4
+* ./tools/dist_train.sh configs/configs/cascade_rcnn_r50_fpn_1x_trainAndVal_baseline.py --validate 4
 
 输出测试结果
 * chmod +x tools/dist_test.sh

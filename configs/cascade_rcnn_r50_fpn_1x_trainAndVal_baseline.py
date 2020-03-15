@@ -200,8 +200,7 @@ data = dict(
     val=dict(
         type=dataset_type,
         ann_file=data_root + 'newData/val/annotations/data.json',
-        img_prefix=data_root + 'val/image/',
-        pipeline=test_pipeline),
+        img_prefix=data_root + 'val/image/'),
 
     test=dict(
         type=dataset_type,
