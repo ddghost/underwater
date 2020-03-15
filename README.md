@@ -46,6 +46,5 @@
 * python tools/post_process/json2submit.py --test_json cas_r50.bbox.json --submit_file cas_r50.csv
 
 
-* ./tools/dist_train.sh configs/cascade_rcnn_r50_fpn_1x_dp_layer3.py 4
 
 #CUDA_VISIBLE_DEVICES
