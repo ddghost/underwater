@@ -79,8 +79,9 @@ def main():
     dirName = sys.argv[1]
     xml_path = osp.join(dirName ,'box')
     img_path = osp.join(dirName ,'image')
+    annotations_path = osp.join(dirName ,'annotations/data.json')
     print('processing {} ...'.format("xml format annotations"))
-    cvt_annotations(img_path, xml_path, 'data/train/annotations/train.json')
+    cvt_annotations(img_path, xml_path, annotations_path)
     print('Done!')
 
 

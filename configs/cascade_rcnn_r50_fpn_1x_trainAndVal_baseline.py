@@ -172,6 +172,8 @@ train_pipeline = [
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
 ]
+
+
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
@@ -192,20 +194,21 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file='data/train/annotations/train.json',
+        ann_file='newData/train/annotations/data.json',
         img_prefix=data_root + 'train/image/',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'data/train/annotations/val.json',
+        ann_file=data_root + 'newData/val/annotations/data.json',
         img_prefix=data_root + 'val/image/',
-        pipeline=val_pipeline),
+        pipeline=test_pipeline),
 
     test=dict(
         type=dataset_type,
         ann_file='data/train/annotations/testA.json',
         img_prefix=data_root + 'test-A-image/',
         pipeline=test_pipeline))
+evaluation = dict(interval=1, metric='bbox')
 # optimizer
 optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
@@ -216,7 +219,7 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
     step=[8, 11])
-checkpoint_config = dict(interval=12)
+checkpoint_config = dict(interval=1)
 # yapf:disable
 log_config = dict(
     interval=50,
