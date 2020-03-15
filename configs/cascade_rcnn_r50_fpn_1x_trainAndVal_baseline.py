@@ -199,7 +199,7 @@ data = dict(
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'newData/val/annotations/data.json',
+        ann_file=data_root + 'val/annotations/data.json',
         img_prefix=data_root + 'val/image/',
         pipeline=test_pipeline),
 
