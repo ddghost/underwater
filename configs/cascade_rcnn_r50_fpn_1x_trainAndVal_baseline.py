@@ -235,4 +235,4 @@ log_level = 'INFO'
 work_dir = './work_dirs/cascade_rcnn_r50_fpn_1x_trainAndVal_baseline'
 load_from = './data/pretrained/cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth'
 resume_from = None
-workflow = [('train', 1)]
+workflow = [[('train', 1), ('val', 1)]]
