@@ -158,7 +158,7 @@ test_cfg = dict(
         score_thr=0.001, nms=dict(type='soft_nms', iou_thr=0.5, min_score=0.001), max_per_img=100))
 # dataset settings
 dataset_type = 'Underwater'
-data_root = 'data/'
+data_root = 'newData_0315/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -194,7 +194,7 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file='newData/train/annotations/data.json',
+        ann_file= data_root + 'train/annotations/data.json',
         img_prefix=data_root + 'train/image/',
         pipeline=train_pipeline),
     val=dict(
@@ -205,7 +205,7 @@ data = dict(
 
     test=dict(
         type=dataset_type,
-        ann_file='data/train/annotations/testA.json',
+        ann_file= data_root + 'train/annotations/testA.json',
         img_prefix=data_root + 'test-A-image/',
         pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')
