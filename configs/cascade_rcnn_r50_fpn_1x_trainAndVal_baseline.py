@@ -201,7 +201,7 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'val/annotations/data.json',
         img_prefix=data_root + 'val/image/',
-        pipeline=train_pipeline),
+        pipeline=test_pipeline),
 
     test=dict(
         type=dataset_type,
@@ -235,4 +235,4 @@ log_level = 'INFO'
 work_dir = './work_dirs/cascade_rcnn_r50_fpn_1x_trainAndVal_baseline'
 load_from = './data/pretrained/cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth'
 resume_from = None
-workflow = [('train', 1), ('val', 1)]
+workflow = [('val', 1), ('train', 1)]
