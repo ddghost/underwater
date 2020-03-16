@@ -165,9 +165,9 @@ albu_train_transforms = [
     dict(
         type='OneOf',
         transforms=[
-            dict(type='Blur', blur_limit=3, p=1.0),
-            dict(type='MedianBlur', blur_limit=3, p=1.0),
-            dict(type='NoOp')
+            dict(type='Blur', blur_limit=3, p=0.4),
+            dict(type='MedianBlur', blur_limit=3, p=0.3),
+            dict(type='NoOp',p =0.4)
         ],
         p=0.1),
 ]
