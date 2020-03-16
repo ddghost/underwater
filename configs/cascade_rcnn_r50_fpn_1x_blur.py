@@ -273,7 +273,7 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
     step=[8, 11])
-checkpoint_config = dict(interval=12)
+checkpoint_config = dict(interval=10)
 # yapf:disable
 log_config = dict(
     interval=50,
@@ -283,7 +283,7 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 12
+total_epochs = 10
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/cascade_rcnn_r50_fpn_1x_blur'
