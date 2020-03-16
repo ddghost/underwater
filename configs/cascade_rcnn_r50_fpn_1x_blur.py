@@ -197,7 +197,7 @@ lbu_train_transforms = [
         type='OneOf',
         transforms=[
             dict(type='Blur', blur_limit=3, p=1.0),
-            dict(type='MedianBlur', blur_limit=3, p=1.0)
+            dict(type='MedianBlur', blur_limit=3, p=1.0),
             dict(type='NoOp')
         ],
         p=0.1),
