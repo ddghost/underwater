@@ -199,8 +199,8 @@ data = dict(
         pipeline=train_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file= data_root + 'train/annotations/testA.json',
-        img_prefix=data_root + 'test-A-image/',
+        ann_file=data_root + 'val/annotations/data.json',
+        img_prefix=data_root + 'val/image/',
 
         pipeline=test_pipeline))
 '''
