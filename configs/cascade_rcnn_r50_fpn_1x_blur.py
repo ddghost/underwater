@@ -211,7 +211,22 @@ train_pipeline = [
     dict(type='Resize', img_scale=[(4096, 800), (4096, 1200)],multiscale_mode='range', keep_ratio=True),
     dict(type='Pad', size_divisor=32),
     dict(type='RandomFlip', flip_ratio=0.5),
-
+    dict(
+        type='Albu',
+        transforms=albu_train_transforms,
+        bbox_params=dict(
+            type='BboxParams',
+            format='coco',
+            label_fields=['gt_labels'],
+            min_visibility=0.0,
+            filter_lost_elements=True),
+        keymap={
+            'img': 'image',
+            #'gt_masks': 'masks',
+            'gt_bboxes': 'bboxes'
+        },
+        update_pad_shape=False,
+        skip_img_without_anno=True),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='DefaultFormatBundle'),
     dict(
