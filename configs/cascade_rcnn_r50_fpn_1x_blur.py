@@ -183,13 +183,13 @@ train_pipeline = [
         transforms=albu_train_transforms,
         bbox_params=dict(
             type='BboxParams',
-            format='pascal_voc',
+            format='CocoDataset',
             label_fields=['gt_labels'],
             min_visibility=0.0,
             filter_lost_elements=True),
         keymap={
             'img': 'image',
-            'gt_masks': 'masks',
+            #'gt_masks': 'masks',
             'gt_bboxes': 'bboxes'
         },
         update_pad_shape=False,
@@ -198,7 +198,7 @@ train_pipeline = [
     dict(type='DefaultFormatBundle'),
     dict(
         type='Collect',
-        keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks'],
+        keys=['img', 'gt_bboxes', 'gt_labels'],
         meta_keys=('filename', 'ori_shape', 'img_shape', 'img_norm_cfg',
                    'pad_shape', 'scale_factor'))
 ]
