@@ -205,7 +205,7 @@ train_pipeline = [
 ]
 '''
 train_pipeline = [
-    '''
+'''
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
     dict(type='Resize', img_scale=[(4096, 800), (4096, 1200)],
@@ -215,7 +215,7 @@ train_pipeline = [
     dict(type='Pad', size_divisor=32),
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
-    '''
+'''
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
     dict(type='Resize', img_scale=[(4096, 800), (4096, 1200)],multiscale_mode='range', keep_ratio=True),
