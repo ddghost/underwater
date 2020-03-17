@@ -164,10 +164,12 @@ dataset_type = 'Underwater'
 data_root = 'data/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
+
+imgScale = 0.9#!!!!!!
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=[(3584, 700), (3584, 1050)],
+    dict(type='Resize', img_scale=[( int(4096 * imgScale), int(800 * imgScale) ), ( int(4096 * imgScale), ont(1200 * imgScale))],
          multiscale_mode='range', keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
