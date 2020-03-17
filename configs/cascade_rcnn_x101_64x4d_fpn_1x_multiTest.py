@@ -181,7 +181,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=[(4096, 1000)],#,(8192, 2000)],#,(5120, 1250),(6144, 1500)],(3072, 750),(2048,500)],
+        img_scale=[(4096, 1000),(8192, 2000),(5120, 1250),(6144, 1500)],(3072, 750),(2048,500)],
         flip=True,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -215,7 +215,7 @@ lr_config = dict(
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
     step=[8, 11])
-checkpoint_config = dict(interval=2)
+checkpoint_config = dict(interval=12)
 # yapf:disable
 log_config = dict(
     interval=50,
@@ -225,7 +225,7 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 2
+total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/cascade_rcnn_x101_64x4d_fpn_1x'#!!!!!!!!!!!

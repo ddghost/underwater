@@ -46,6 +46,5 @@
 在submit文件夹生成结果
 * python tools/post_process/json2submit.py --test_json cas_r50.bbox.json --submit_file cas_r50.csv
 
-
-
+ 
 #CUDA_VISIBLE_DEVICES
