@@ -169,7 +169,7 @@ imgScale = 0.9#!!!!!!
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=[( int(4096 * imgScale), int(800 * imgScale) ), ( int(4096 * imgScale), ont(1200 * imgScale))],
+    dict(type='Resize', img_scale=[( int(4096 * imgScale), int(800 * imgScale) ), ( int(4096 * imgScale), int(1200 * imgScale))],
          multiscale_mode='range', keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
