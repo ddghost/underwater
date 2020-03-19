@@ -1,7 +1,7 @@
 # model settings
 model = dict(
     type='FasterRCNN',
-    pretrained='open-mmlab://msra/hrnetv2_w48',
+    pretrained=None,
     backbone=dict(
         type='HRNet',
         extra=dict(
@@ -16,20 +16,20 @@ model = dict(
                 num_branches=2,
                 block='BASIC',
                 num_blocks=(4, 4),
-                num_channels=(40, 80)),
+                num_channels=(48, 96)),
             stage3=dict(
                 num_modules=4,
                 num_branches=3,
                 block='BASIC',
                 num_blocks=(4, 4, 4),
-                num_channels=(40, 80, 160)),
+                num_channels=(48, 96, 192)),
             stage4=dict(
                 num_modules=3,
                 num_branches=4,
                 block='BASIC',
                 num_blocks=(4, 4, 4, 4),
-                num_channels=(40, 80, 160, 320)))),
-    neck=dict(type='HRFPN', in_channels=[40, 80, 160, 320], out_channels=256),
+                num_channels=(48, 96, 192, 384)))),
+    neck=dict(type='HRFPN', in_channels=[48, 96, 192, 384], out_channels=256),
     rpn_head=dict(
         type='RPNHead',
         in_channels=256,
