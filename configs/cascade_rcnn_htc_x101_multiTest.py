@@ -166,29 +166,28 @@ img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 
 imgScale = 0.8#!!!!!!
+img_norm_cfg = dict(
+    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True, with_mask=True, with_seg=True),
-    dict(type='Resize', img_scale=[( int(4096 * imgScale), int(800 * imgScale) ), ( int(4096 * imgScale), int(1200 * imgScale))],
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(type='Resize', img_scale=[(int(4096*imgScale), int(600*imgScale) ), ( int(4096*imgScale), int(1000*imgScale))],
          multiscale_mode='range', keep_ratio=True),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
-    dict(type='SegRescale', scale_factor=1 / 8),
     dict(type='DefaultFormatBundle'),
-    dict(
-        type='Collect',
-        keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks', 'gt_semantic_seg']),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=[(4096, 1000),(8192, 2000),(5120, 1250),(6144, 1500),(3072, 750),(2048,500)],
+        img_scale=[(4096, 800),(8192, 1600),(5120, 1000),(6144, 1200),(3072, 600),(2048,400)],
         flip=True,
         transforms=[
             dict(type='Resize', keep_ratio=True),
-            dict(type='RandomFlip', flip_ratio=0.5),
+            dict(type='RandomFlip'),
             dict(type='Normalize', **img_norm_cfg),
             dict(type='Pad', size_divisor=32),
             dict(type='ImageToTensor', keys=['img']),
