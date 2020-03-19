@@ -182,7 +182,7 @@ log_config = dict(
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cascade_rcnn_x101_64x4d_fpn_1x'#!!!!!!!!!!!
-load_from = './data/pretrained/cascade_rcnn_x101_64x4d_fpn_2x_20181218-5add321e.pth'
+work_dir = './work_dirs/cascade_hrnetv29_w48_2x'#!!!!!!!!!!!
+load_from = None
 resume_from = None
 workflow = [('train', 1)]
