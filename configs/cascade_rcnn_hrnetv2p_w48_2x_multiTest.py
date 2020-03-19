@@ -1,7 +1,7 @@
 # model settings
 model = dict(
     type='FasterRCNN',
-    pretrained='open-mmlab://msra/hrnetv2_w40',
+    pretrained='open-mmlab://msra/hrnetv2_w48',
     backbone=dict(
         type='HRNet',
         extra=dict(
