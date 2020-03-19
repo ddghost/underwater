@@ -1,7 +1,7 @@
 model = dict(
     type='CascadeRCNN',
     num_stages=3,
-    pretrained='open-mmlab://msra/hrnetv2_w32',
+    pretrained=None,
     backbone=dict(
         type='HRNet',
         extra=dict(
