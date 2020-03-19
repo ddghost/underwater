@@ -1,7 +1,10 @@
+# model settings
 model = dict(
-    type='CascadeRCNN',
+    type='HybridTaskCascade',
     num_stages=3,
     pretrained=None,
+    interleaved=True,
+    mask_info_flow=True,
     backbone=dict(
         type='HRNet',
         extra=dict(
@@ -86,8 +89,55 @@ model = dict(
             reg_class_agnostic=True,
             loss_cls=dict(
                 type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
-            loss_bbox=dict(type='SmoothL1Loss', beta=1.0, loss_weight=1.0)),
-    ])
+            loss_bbox=dict(type='SmoothL1Loss', beta=1.0, loss_weight=1.0))
+    ],
+    mask_roi_extractor=dict(
+        type='SingleRoIExtractor',
+        roi_layer=dict(type='RoIAlign', out_size=14, sample_num=2),
+        out_channels=256,
+        featmap_strides=[4, 8, 16, 32]),
+    mask_head=[
+        dict(
+            type='HTCMaskHead',
+            with_conv_res=False,
+            num_convs=4,
+            in_channels=256,
+            conv_out_channels=256,
+            num_classes=81,
+            loss_mask=dict(
+                type='CrossEntropyLoss', use_mask=True, loss_weight=1.0)),
+        dict(
+            type='HTCMaskHead',
+            num_convs=4,
+            in_channels=256,
+            conv_out_channels=256,
+            num_classes=81,
+            loss_mask=dict(
+                type='CrossEntropyLoss', use_mask=True, loss_weight=1.0)),
+        dict(
+            type='HTCMaskHead',
+            num_convs=4,
+            in_channels=256,
+            conv_out_channels=256,
+            num_classes=81,
+            loss_mask=dict(
+                type='CrossEntropyLoss', use_mask=True, loss_weight=1.0))
+    ],
+    semantic_roi_extractor=dict(
+        type='SingleRoIExtractor',
+        roi_layer=dict(type='RoIAlign', out_size=14, sample_num=2),
+        out_channels=256,
+        featmap_strides=[8]),
+    semantic_head=dict(
+        type='FusedSemanticHead',
+        num_ins=5,
+        fusion_level=1,
+        num_convs=4,
+        in_channels=256,
+        conv_out_channels=256,
+        num_classes=183,
+        ignore_label=255,
+        loss_weight=0.2))
 # model training and testing settings
 train_cfg = dict(
     rpn=dict(
@@ -127,6 +177,7 @@ train_cfg = dict(
                 pos_fraction=0.25,
                 neg_pos_ub=-1,
                 add_gt_as_proposals=True),
+            mask_size=28,
             pos_weight=-1,
             debug=False),
         dict(
@@ -142,6 +193,7 @@ train_cfg = dict(
                 pos_fraction=0.25,
                 neg_pos_ub=-1,
                 add_gt_as_proposals=True),
+            mask_size=28,
             pos_weight=-1,
             debug=False),
         dict(
@@ -157,6 +209,7 @@ train_cfg = dict(
                 pos_fraction=0.25,
                 neg_pos_ub=-1,
                 add_gt_as_proposals=True),
+            mask_size=28,
             pos_weight=-1,
             debug=False)
     ],
@@ -170,7 +223,10 @@ test_cfg = dict(
         nms_thr=0.7,
         min_bbox_size=0),
     rcnn=dict(
-        score_thr=0.05, nms=dict(type='nms', iou_thr=0.5), max_per_img=100))
+        score_thr=0.001,
+        nms=dict(type='nms', iou_thr=0.5),
+        max_per_img=100,
+        mask_thr_binary=0.5))
 # dataset settings
 dataset_type = 'Underwater'
 data_root = 'data/'
