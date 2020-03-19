@@ -1,3 +1,4 @@
+Learn more or give us feedback
 fp16 = dict(loss_scale=512.)
 # model settings
 model = dict(
@@ -159,12 +160,8 @@ test_cfg = dict(
         min_bbox_size=0),
     rcnn=dict(
         score_thr=0.0001, nms=dict(type='soft_nms', iou_thr=0.5, min_score=0.0001), max_per_img=200))
-# dataset settings
 dataset_type = 'Underwater'
 data_root = 'data/'
-img_norm_cfg = dict(
-    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-
 imgScale = 1#!!!!!!
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -230,7 +227,7 @@ log_config = dict(
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cascade_hrnetv29_w48_2x'#!!!!!!!!!!!
+work_dir = './work_dirs/cascade_htcx101_w48'#!!!!!!!!!!!
 load_from = './data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
 workflow = [('train', 1)]
