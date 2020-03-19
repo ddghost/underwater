@@ -232,6 +232,6 @@ total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/cascade_hrnetv29_w48_2x'#!!!!!!!!!!!
-load_from = './data/pretrained/htc_hrnetv2p_w48_28e_20190810-a4274b38.pth'
+load_from = './data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
 workflow = [('train', 1)]
