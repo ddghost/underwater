@@ -15,10 +15,11 @@
 * mkdir data/train/annotations
 
 配置conda环境和依赖:
+*	pip install mmcv
 *	conda create -n underwater python=3.7 -y 
 *	conda activate underwater
 *	conda install pytorch=1.1.0 torchvision=0.3.0 cudatoolkit=10.0 -c pytorch
-*	pip install -r requirements/build.txt
+*	pip install cython && pip --no-cache-dir install -r requirements.txt
 
 注意pillow版本可能会过高
 *	conda install pillow=6.1
