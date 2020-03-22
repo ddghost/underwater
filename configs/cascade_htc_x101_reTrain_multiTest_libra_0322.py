@@ -134,7 +134,7 @@ train_cfg = dict(
                     floor_fraction=0,
                     num_bins=3)),
                 pos_weight=-1,
-                debug=False)
+                debug=False),
         dict(
             assigner=dict(
                 type='MaxIoUAssigner',
