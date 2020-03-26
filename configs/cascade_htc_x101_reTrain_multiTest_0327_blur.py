@@ -193,7 +193,7 @@ train_pipeline = [
         },
         update_pad_shape=False,
         skip_img_without_anno=True),
-    dict(type='Normalize', **img_norm_cfg),
+    #dict(type='Normalize', **img_norm_cfg),
     dict(type='DefaultFormatBundle'),
     dict(
         type='Collect',
