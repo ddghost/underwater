@@ -60,7 +60,7 @@ def main():
 
     cfg = Config.fromfile(args.config)
     datasets = build_dataset(cfg.data.train)
-    print(datasets[0])
+    print(datasets[0]['img'])
 
 
 if __name__ == '__main__':
