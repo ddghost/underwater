@@ -193,13 +193,16 @@ train_pipeline = [
         },
         update_pad_shape=False,
         skip_img_without_anno=True),
-    #dict(type='Normalize', **img_norm_cfg),
+    dict(type='Collect', keys=['img']),
+    '''
+    dict(type='Normalize', **img_norm_cfg),
     dict(type='DefaultFormatBundle'),
     dict(
         type='Collect',
         keys=['img', 'gt_bboxes', 'gt_labels'],
         meta_keys=('filename', 'ori_shape', 'img_shape', 'img_norm_cfg',
                    'pad_shape', 'scale_factor'))
+    '''
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
