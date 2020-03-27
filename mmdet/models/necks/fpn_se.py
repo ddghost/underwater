@@ -9,8 +9,6 @@ from ..utils import ConvModule
 
 
 
-        
-
 @NECKS.register_module
 class FPN_SE(nn.Module):
     """
