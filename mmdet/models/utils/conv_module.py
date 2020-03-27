@@ -183,7 +183,7 @@ class ConvModule(nn.Module):
 
             elif layer == 'norm' and norm and self.with_norm:
                 x = self.norm(x)
-            elif layer = 'se'
+            elif layer == 'se':
                 x = self.seLayer(x)
             elif layer == 'act' and activate and self.with_activation:
                 x = self.activate(x)
