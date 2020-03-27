@@ -96,7 +96,7 @@ class ConvModule(nn.Module):
                  norm_cfg=None,
                  activation='relu',
                  inplace=True,
-                 order=('conv', 'norm', 'act')
+                 order=('conv', 'norm', 'act'),
                  useSe=False):
         super(ConvModule, self).__init__()
         assert conv_cfg is None or isinstance(conv_cfg, dict)
