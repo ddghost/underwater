@@ -108,7 +108,7 @@ class FPN_SE(nn.Module):
                 conv_cfg=conv_cfg,
                 norm_cfg=norm_cfg,
                 activation=self.activation,
-                inplace=False
+                inplace=False,
                 useSe=True)
 
             self.lateral_convs.append(l_conv)
