@@ -168,16 +168,18 @@ albu_train_transforms = [
     dict(
         type='OneOf',
         transforms=[
-            dict(type='MotionBlur'),
+            dict(type='MedianBlur'),
         ],
-        p=0.1),
+        p=1),
+
 ]
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=[(4096, 600), (4096, 1000)],multiscale_mode='range', keep_ratio=True),
-    dict(type='Pad', size_divisor=32),
-    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(type='Resize', img_scale=(4096, 800), keep_ratio=True),
+    #dict(type='Resize', img_scale=[(4096, 600), (4096, 1000)],multiscale_mode='range', keep_ratio=True),
+    #dict(type='Pad', size_divisor=32),
+    #dict(type='RandomFlip', flip_ratio=0.5),
     dict(
         type='Albu',
         transforms=albu_train_transforms,
@@ -193,16 +195,13 @@ train_pipeline = [
         },
         update_pad_shape=False,
         skip_img_without_anno=True),
-    dict(type='Collect', keys=['img']),
-    '''
-    dict(type='Normalize', **img_norm_cfg),
+    #dict(type='Normalize', **img_norm_cfg),
     dict(type='DefaultFormatBundle'),
     dict(
         type='Collect',
         keys=['img', 'gt_bboxes', 'gt_labels'],
-        meta_keys=('filename', 'ori_shape', 'img_shape', 'img_norm_cfg',
+        meta_keys=('filename', 'ori_shape', 'img_shape', 
                    'pad_shape', 'scale_factor'))
-    '''
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),

@@ -5,6 +5,8 @@ import os
 import os.path as osp
 import time
 
+import cv2
+import numpy as np
 import mmcv
 import torch
 from mmcv import Config
@@ -60,7 +62,11 @@ def main():
 
     cfg = Config.fromfile(args.config)
     datasets = build_dataset(cfg.data.train)
-    print(datasets[0]['img'])
+    imgNp = datasets[1]['img'].data.numpy().copy()
+    print(datasets.get_ann_info(0) )  
+    imgNp = np.swapaxes(imgNp,0,2)
+    imgNp = np.swapaxes(imgNp,0,1)
+    cv2.imwrite('example.png', imgNp )
 
 
 if __name__ == '__main__':
