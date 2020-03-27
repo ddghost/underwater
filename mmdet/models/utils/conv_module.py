@@ -14,7 +14,23 @@ conv_cfg = {
     'DCNv2': ModulatedDeformConvPack,
     # TODO: octave conv
 }
+class SELayer(nn.Module):
+    def __init__(self, channel, reduction=16):
+        super(SELayer, self).__init__()
+        self.avg_pool = nn.AdaptiveAvgPool2d(1)
+        self.fc1 = nn.Linear(channel, channel // reduction, bias=False)
+        self.relu = nn.ReLU(inplace=True)
+        self.fc2 = nn.Linear(channel // reduction, channel, bias=False)
+        self.sigmoid = nn.Sigmoid()
 
+    def forward(self, x):
+        batchSize, channelNum, _, _ = x.size()
+        y = self.avg_pool(x)
+        y = y.view(batchSize, channelNum)
+        y = self.relu(self.fc1(y))
+        y = self.sigmoid(self.fc2(y))
+        y = y.view(batchSize, channelNum, 1, 1)
+        return x * y
 
 def build_conv_layer(cfg, *args, **kwargs):
     """ Build convolution layer
@@ -80,7 +96,8 @@ class ConvModule(nn.Module):
                  norm_cfg=None,
                  activation='relu',
                  inplace=True,
-                 order=('conv', 'norm', 'act')):
+                 order=('conv', 'norm', 'act')
+                 useSe=False):
         super(ConvModule, self).__init__()
         assert conv_cfg is None or isinstance(conv_cfg, dict)
         assert norm_cfg is None or isinstance(norm_cfg, dict)
@@ -123,7 +140,7 @@ class ConvModule(nn.Module):
         self.transposed = self.conv.transposed
         self.output_padding = self.conv.output_padding
         self.groups = self.conv.groups
-
+        self.useSe = useSe
         # build normalization layers
         if self.with_norm:
             # norm layer is after conv layer
@@ -142,6 +159,9 @@ class ConvModule(nn.Module):
                     self.activation))
             if self.activation == 'relu':
                 self.activate = nn.ReLU(inplace=inplace)
+        if(self.useSe):
+            self.order=('conv', 'norm', 'se','act')
+            self.seLayer = SELayer(out_channels)
 
         # Use msra init by default
         self.init_weights()
@@ -160,8 +180,11 @@ class ConvModule(nn.Module):
         for layer in self.order:
             if layer == 'conv':
                 x = self.conv(x)
+
             elif layer == 'norm' and norm and self.with_norm:
                 x = self.norm(x)
+            elif layer = 'se'
+                x = self.seLayer(x)
             elif layer == 'act' and activate and self.with_activation:
                 x = self.activate(x)
         return x
