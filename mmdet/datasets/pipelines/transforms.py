@@ -23,7 +23,7 @@ except ImportError:
 
 @PIPELINES.register_module
 class MotionBlur(object):
-    def __init__(self,p=0.5):
+    def __init__(self,p=1):
         self.possiblity = p
     @staticmethod
     def genaratePsf(length,angle):
