@@ -25,7 +25,7 @@ except ImportError:
 class MotionBlur(object):
     def __init__(self,p=0.5):
         self.possiblity = p
-
+    @staticmethod
     def genaratePsf(length,angle):
         EPS=np.finfo(float).eps                                 
         alpha = (angle-math.floor(angle/ 180) *180) /180* math.pi
@@ -75,7 +75,7 @@ class MotionBlur(object):
         length = np.random.rand() * 10 + 10
         angle = np.random.rand() * 180 - 90
         if( np.random.rand() < self.possiblity):
-            kernel,anchor=genaratePsf(length, angle)
+            kernel,anchor= genaratePsf(length, angle)
             results['img']=cv2.filter2D(results['img'],-1,kernel,anchor=anchor)
         return results
 
