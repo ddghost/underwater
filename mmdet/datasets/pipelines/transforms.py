@@ -24,7 +24,7 @@ except ImportError:
 @PIPELINES.register_module
 class MotionBlur(object):
     def __init__(self,p=0.5):
-        pass
+        self.possiblity = p
 
     def genaratePsf(length,angle):
         EPS=np.finfo(float).eps                                 
@@ -74,7 +74,7 @@ class MotionBlur(object):
     def __call__(self, results):
         length = np.random.rand() * 10 + 10
         angle = np.random.rand() * 180 - 90
-        if( np.random.rand() < p):
+        if( np.random.rand() < self.possiblity):
             kernel,anchor=genaratePsf(length, angle)
             results['img']=cv2.filter2D(results['img'],-1,kernel,anchor=anchor)
         return results
