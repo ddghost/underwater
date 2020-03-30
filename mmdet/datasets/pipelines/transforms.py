@@ -291,6 +291,7 @@ class RandomFlip(object):
         return flipped
 
     def __call__(self, results):
+        print(results['img'].shape)
         if 'flip' not in results:
             flip = True if np.random.rand() < self.flip_ratio else False
             results['flip'] = flip
@@ -316,6 +317,7 @@ class RandomFlip(object):
             for key in results.get('seg_fields', []):
                 results[key] = mmcv.imflip(
                     results[key], direction=results['flip_direction'])
+        print(results['img'].shape)
         return results
 
     def __repr__(self):
