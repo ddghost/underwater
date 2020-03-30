@@ -63,7 +63,7 @@ def main():
     cfg = Config.fromfile(args.config)
     datasets = build_dataset(cfg.data.train)
     imgNp = datasets[1]['img'].data.numpy().copy()
-    print(datasets.get_ann_info(0) )  
+
     imgNp = np.swapaxes(imgNp,0,2)
     imgNp = np.swapaxes(imgNp,0,1)
     cv2.imwrite('example.png', imgNp )
