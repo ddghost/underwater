@@ -66,7 +66,7 @@ def main():
 
     imgNp = np.swapaxes(imgNp,0,2)
     imgNp = np.swapaxes(imgNp,0,1)
-    print(imgNp.shape)
+
     cv2.imwrite('example.png', imgNp )
 
 
