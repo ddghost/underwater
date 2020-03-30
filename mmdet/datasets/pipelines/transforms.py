@@ -72,10 +72,11 @@ class MotionBlur(object):
         return psf1,anchor
 
     def __call__(self, results):
+        results['img']
         return results
 
     def __repr__(self):
-        return self.__class__.__name__ + 'motionblur!!!!!')
+        return self.__class__.__name__ + 'motionblur!!!!!'
 
 
 @PIPELINES.register_module
