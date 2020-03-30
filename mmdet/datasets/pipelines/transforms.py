@@ -20,6 +20,64 @@ except ImportError:
     Compose = None
 
 
+
+@PIPELINES.register_module
+class MotionBlur(object):
+    def __init__(self):
+        pass
+
+    def genaratePsf(length,angle):
+        EPS=np.finfo(float).eps                                 
+        alpha = (angle-math.floor(angle/ 180) *180) /180* math.pi
+        cosalpha = math.cos(alpha)  
+        sinalpha = math.sin(alpha)  
+        half = length/2
+        if cosalpha < 0:
+            xsign = -1
+        elif angle == 90:
+            xsign = 0
+        else:  
+            xsign = 1
+        psfwdt = 1;  
+
+        sx = int(math.fabs(length*cosalpha + psfwdt*xsign - length*EPS))  
+        sy = int(math.fabs(length*sinalpha + psfwdt - length*EPS))
+        psf1=np.zeros((sy,sx))
+
+        for i in range(0,sy):
+            for j in range(0,sx):
+                psf1[i][j] = i*math.fabs(cosalpha) - j*sinalpha
+                rad = math.sqrt(i*i + j*j) 
+                if  rad >= half and math.fabs(psf1[i][j]) <= psfwdt:  
+                    temp = half - math.fabs((j + psf1[i][j] * sinalpha) / cosalpha)  
+                    psf1[i][j] = math.sqrt(psf1[i][j] * psf1[i][j] + temp*temp)
+                psf1[i][j] = psfwdt + EPS - math.fabs(psf1[i][j]);  
+                if psf1[i][j] < 0:
+                    psf1[i][j] = 0
+        #运动方向是往左上运动，锚点在（0，0）
+        anchor=(0,0)
+        #运动方向是往右上角移动，锚点一个在右上角
+        #同时，左右翻转核函数，使得越靠近锚点，权值越大
+        if angle<90 and angle>0:
+            psf1=np.fliplr(psf1)
+            anchor=(psf1.shape[1]-1,0)
+        elif angle>-90 and angle<0:#同理：往右下角移动
+            psf1=np.flipud(psf1)
+            psf1=np.fliplr(psf1)
+            anchor=(psf1.shape[1]-1,psf1.shape[0]-1)
+        elif anchor<-90:#同理：往左下角移动
+            psf1=np.flipud(psf1)
+            anchor=(0,psf1.shape[0]-1)
+        psf1=psf1/psf1.sum()
+        return psf1,anchor
+
+    def __call__(self, results):
+        return results
+
+    def __repr__(self):
+        return self.__class__.__name__ + 'motionblur!!!!!')
+
+
 @PIPELINES.register_module
 class Resize(object):
     """Resize images & bbox & mask.
@@ -169,6 +227,7 @@ class Resize(object):
             results['gt_semantic_seg'] = gt_seg
 
     def __call__(self, results):
+        print(results)
         if 'scale' not in results:
             self._random_scale(results)
         self._resize_img(results)
