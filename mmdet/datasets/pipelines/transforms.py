@@ -230,7 +230,7 @@ class Resize(object):
             results['gt_semantic_seg'] = gt_seg
 
     def __call__(self, results):
-        print(results)
+
         if 'scale' not in results:
             self._random_scale(results)
         self._resize_img(results)
