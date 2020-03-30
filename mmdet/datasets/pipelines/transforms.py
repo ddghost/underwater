@@ -72,8 +72,10 @@ class MotionBlur(object):
         return psf1,anchor
 
     def __call__(self, results):
+        length = np.random.rand() * 10 + 10
+        angle = np.random.rand() * 180 - 90
         if( np.random.rand() < p):
-            kernel,anchor=genaratePsf(10,40)
+            kernel,anchor=genaratePsf(length, angle)
             results['img']=cv2.filter2D(results['img'],-1,kernel,anchor=anchor)
         return results
 
