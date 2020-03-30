@@ -1,5 +1,5 @@
 import inspect
-
+import cv2
 import mmcv
 import numpy as np
 from numpy import random
@@ -23,7 +23,7 @@ except ImportError:
 
 @PIPELINES.register_module
 class MotionBlur(object):
-    def __init__(self):
+    def __init__(self,p=0.5):
         pass
 
     def genaratePsf(length,angle):
@@ -72,7 +72,9 @@ class MotionBlur(object):
         return psf1,anchor
 
     def __call__(self, results):
-        results['img']
+        if( np.random.rand() < p)
+            kernel,anchor=genaratePsf(10,40)
+            results['img']=cv2.filter2D(results['img'],-1,kernel,anchor=anchor)
         return results
 
     def __repr__(self):
