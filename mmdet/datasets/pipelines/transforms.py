@@ -23,7 +23,7 @@ except ImportError:
 
 @PIPELINES.register_module
 class MotionBlur(object):
-    def __init__(self, lenRange=(10,20),angleRange=(-90,90) p=1):
+    def __init__(self, lenRange=(10,20),angleRange=(-90,90), p=1):
         self.possiblity = p
         self.lenRange = lenRange
         self.angleRange = angleRange
