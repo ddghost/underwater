@@ -22,7 +22,7 @@ class LoadImageFromFile(object):
             filename = results['img_info']['filename']
 
         img = mmcv.imread(filename, self.color_type)
-        print(img.shape,'LoadImageFromFile')
+        print(img.shape, filename , 'LoadImageFromFile')
         if self.to_float32:
             img = img.astype(np.float32)
 
@@ -30,7 +30,7 @@ class LoadImageFromFile(object):
         results['img'] = img
         results['img_shape'] = img.shape
         results['ori_shape'] = img.shape
-        print(results[img].shape,'LoadImageFromFile')
+
         return results
 
     def __repr__(self):
@@ -100,7 +100,7 @@ class LoadAnnotations(object):
         return results
 
     def __call__(self, results):
-        print(results[img].shape,'LoadAnnotations')
+
         if self.with_bbox:
             results = self._load_bboxes(results)
             if results is None:
@@ -111,7 +111,7 @@ class LoadAnnotations(object):
             results = self._load_masks(results)
         if self.with_seg:
             results = self._load_semantic_seg(results)
-        print(results[img].shape,'LoadAnnotations')
+
         return results
 
     def __repr__(self):
