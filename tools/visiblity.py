@@ -59,7 +59,8 @@ def parse_args():
 
 def main():
     args = parse_args()
-
+    tempImg = mmcv.imread('./data/train/image/002196.jpg', 'color')
+    print(tempImg.shape)
     cfg = Config.fromfile(args.config)
     datasets = build_dataset(cfg.data.train)
     imgNp = datasets[1]['img'].data.numpy().copy()
