@@ -169,7 +169,7 @@ train_pipeline = [
     dict(type='LoadAnnotations', with_bbox=True),
     dict(type='Resize', img_scale=[(4096, 600), (4096, 1000)],
          multiscale_mode='range', keep_ratio=True),
-    dict(type='MotionBlur'),
+    dict(type='MotionBlur',lenRange=(10,20),angleRange(-90,90) ),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
@@ -180,7 +180,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=[(3072, 450), (3072, 600), (3072, 750),(4096, 600), (4096, 800), (4096, 1000),(5120, 750), (5120, 1000), (5120, 1250), (6144, 900), (6144, 1200), (6144, 1500)],
+        img_scale=[(4096, 600), (4096, 800), (4096, 1000)],
         flip=True,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -229,7 +229,7 @@ log_config = dict(
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_motionBlur'
+work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_motionBlur_trainAndVal'
 load_from = 'data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
 workflow = [('train', 1)]

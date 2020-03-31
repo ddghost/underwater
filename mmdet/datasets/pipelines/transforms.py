@@ -23,8 +23,10 @@ except ImportError:
 
 @PIPELINES.register_module
 class MotionBlur(object):
-    def __init__(self,p=1):
+    def __init__(self, lenRange=(10,20),angleRange=(-90,90) p=1):
         self.possiblity = p
+        self.lenRange = lenRange
+        self.angleRange = angleRange
     @staticmethod
     def genaratePsf(length,angle):
         EPS=np.finfo(float).eps                                 
@@ -70,10 +72,14 @@ class MotionBlur(object):
             anchor=(0,psf1.shape[0]-1)
         psf1=psf1/psf1.sum()
         return psf1,anchor
-
+    @staticmethod
+    def getRandomNum(range):
+        #!!!!!!!!!!!!!!!
+        return np.random.rand()*(range[1]-range[0] )+range[0]
+    
     def __call__(self, results):
-        length = np.random.rand() * 10 + 10
-        angle = np.random.rand() * 180 - 90
+        length = getRandomNum(self.lenRange)
+        angle = getRandomNum(self.angleRange)
         if( np.random.rand() < self.possiblity):
             kernel,anchor= self.genaratePsf(length, angle)
             results['img']=cv2.filter2D(results['img'],-1,kernel,anchor=anchor)
