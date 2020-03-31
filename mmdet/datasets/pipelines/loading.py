@@ -22,7 +22,7 @@ class LoadImageFromFile(object):
             filename = results['img_info']['filename']
 
         img = mmcv.imread(filename, self.color_type)
-        print(img.shape, filename , 'LoadImageFromFile')
+
         if self.to_float32:
             img = img.astype(np.float32)
 
