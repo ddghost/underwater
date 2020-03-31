@@ -66,7 +66,7 @@ def main():
     
     imgNp = np.swapaxes(imgNp,0,2)
     imgNp = np.swapaxes(imgNp,0,1)
-    tempImg = mcv.imread('data/train/image/002196.jpg ', self.color_type)
+    tempImg = mcv.imread('data/train/image/002196.jpg ', 'color')
     print(tempImg.shape)
     #cv2.imwrite('example.png', imgNp )
 
