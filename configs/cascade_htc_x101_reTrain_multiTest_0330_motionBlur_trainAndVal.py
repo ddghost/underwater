@@ -231,7 +231,7 @@ log_config = dict(
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_motionBlur_lenR_{}_{}_angleR_()_()'.format(lenRange[0],lenRange[1],angleRange[0].angleRange[1])
+work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_motionBlur_lenR_{}_{}_angleR_{}_{}'.format(lenRange[0],lenRange[1],angleRange[0].angleRange[1])
 load_from = 'data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
 workflow = [('train', 1)]
