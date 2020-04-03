@@ -200,13 +200,14 @@ data = dict(
         pipeline=train_pipeline),
     test=dict(
         type=dataset_type,
-        '''
-        ann_file=data_root + 'val/annotations/data.json',
-        img_prefix=data_root + 'val/image/',
-        '''
+
         ann_file= data_root + 'train/annotations/data.json',
         img_prefix=data_root + 'train/image/',
         pipeline=test_pipeline))
+'''
+ann_file=data_root + 'val/annotations/data.json',
+img_prefix=data_root + 'val/image/',
+'''
 # optimizer
 optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
