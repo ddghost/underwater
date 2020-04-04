@@ -221,14 +221,11 @@ class ResNeXt(ResNet):
 
         self._freeze_stages()
 
-    def load_state_dict(self, state_dict, strict=True):
+    def load_imagenet_state_dict(self):
         model_dict = self.state_dict()
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        if(self.pretrained == 'imagenet'):
-            logging.info('load imagenet model!!!!!!!!!!!!')
-            state_dict = model_zoo.load_url('https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth')
-
+        state_dict = model_zoo.load_url('https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth')
+        print('load imagenet model!!!!!!!!!!!!')
         pretrained_dict = {k: v for k, v in state_dict.items()
                            if k in model_dict and model_dict[k].size() == v.size()}
 
@@ -241,3 +238,9 @@ class ResNeXt(ResNet):
 
         model_dict.update(pretrained_dict)
         super(ResNeXt, self).load_state_dict(model_dict)
+    def forward(self, x):
+        if(self.pretrained == 'imagenet'):
+            self.load_imagenet_state_dict()
+            self.pretrained = None
+
+        super(ResNeXt, self).forward(x)
