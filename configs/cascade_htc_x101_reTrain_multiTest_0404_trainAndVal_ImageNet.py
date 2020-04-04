@@ -243,6 +243,6 @@ total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_imageNet_trainAndVal'
-load_from = 'data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
+load_from = 'https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth'
 resume_from = None
 workflow = [('train', 1)]
