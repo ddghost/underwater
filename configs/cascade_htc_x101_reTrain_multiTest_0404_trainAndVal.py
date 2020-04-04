@@ -198,11 +198,15 @@ data = dict(
         ann_file= data_root + 'train/annotations/data.json',
         img_prefix=data_root + 'train/image/',
         pipeline=train_pipeline),
+    val=dict(
+        type=dataset_type,
+        ann_file=data_root + 'val/annotations/data.json',
+        img_prefix=data_root + 'val/image/',
+        pipeline=test_pipeline))
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'val/annotations/data.json',
         img_prefix=data_root + 'val/image/',
-
         pipeline=test_pipeline))
 # optimizer
 optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
@@ -230,4 +234,4 @@ log_level = 'INFO'
 work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_cheCurve_trainAndVal'
 load_from = 'data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
-workflow = [('train', 1)]
+workflow = [('train', 1),('val', 1)]
