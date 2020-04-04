@@ -243,4 +243,4 @@ class ResNeXt(ResNet):
             self.load_imagenet_state_dict()
             self.pretrained = None
 
-        super(ResNeXt, self).forward(x)
+        return super(ResNeXt, self).forward(x)
