@@ -175,6 +175,16 @@ train_pipeline = [
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
 ]
+val_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(type='Resize', img_scale=(4096, 800), keep_ratio=True),
+    dict(type='RandomFlip', flip_ratio=0.0),
+    dict(type='Normalize', **img_norm_cfg),
+    dict(type='Pad', size_divisor=32),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
+]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
@@ -202,7 +212,7 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'val/annotations/data.json',
         img_prefix=data_root + 'val/image/',
-        pipeline=test_pipeline),
+        pipeline=val_pipeline),
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'val/annotations/data.json',
@@ -234,4 +244,4 @@ log_level = 'INFO'
 work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_cheCurve_trainAndVal'
 load_from = 'data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
-workflow = [('train', 1),('val', 1)]
+workflow = [('val', 1),('train', 1)]
