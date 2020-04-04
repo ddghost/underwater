@@ -224,7 +224,8 @@ class ResNeXt(ResNet):
     def load_state_dict(self, state_dict, strict=True):
         model_dict = self.state_dict()
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if(self.pretrained is 'imagenet'):
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        if(self.pretrained == 'imagenet'):
             logging.info('load imagenet model!!!!!!!!!!!!')
             state_dict = model_zoo.load_url('https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth')
 
