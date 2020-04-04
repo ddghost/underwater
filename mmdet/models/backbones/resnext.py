@@ -6,7 +6,7 @@ from ..registry import BACKBONES
 from ..utils import build_conv_layer, build_norm_layer
 from .resnet import Bottleneck as _Bottleneck
 from .resnet import ResNet
-
+import torch.utils.model_zoo as model_zoo
 
 class Bottleneck(_Bottleneck):
 
@@ -186,11 +186,11 @@ class ResNeXt(ResNet):
         152: (Bottleneck, (3, 8, 36, 3))
     }
 
-    def __init__(self, groups=1, base_width=4, **kwargs):
+    def __init__(self, groups=1, base_width=4, pretrained=None, **kwargs):
         super(ResNeXt, self).__init__(**kwargs)
         self.groups = groups
         self.base_width = base_width
-
+        self.pretrained = pretrained
         self.inplanes = 64
         self.res_layers = []
         for i, num_blocks in enumerate(self.stage_blocks):
@@ -220,3 +220,22 @@ class ResNeXt(ResNet):
             self.res_layers.append(layer_name)
 
         self._freeze_stages()
+
+    def load_state_dict(self, state_dict, strict=True):
+        model_dict = self.state_dict()
+        #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if(self.pretrained is 'imagenet'):
+            state_dict = model_zoo.load_url('https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth')
+
+        pretrained_dict = {k: v for k, v in state_dict.items()
+                           if k in model_dict and model_dict[k].size() == v.size()}
+
+        if len(pretrained_dict) == len(state_dict):
+            logging.info('%s: All params loaded' % type(self).__name__)
+        else:
+            logging.info('%s: Some params were not loaded:' % type(self).__name__)
+            not_loaded_keys = [k for k in state_dict.keys() if k not in pretrained_dict.keys()]
+            logging.info(('%s, ' * (len(not_loaded_keys) - 1) + '%s') % tuple(not_loaded_keys))
+
+        model_dict.update(pretrained_dict)
+        super(ResNeXt, self).load_state_dict(model_dict)
