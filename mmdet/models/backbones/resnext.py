@@ -7,7 +7,7 @@ from ..utils import build_conv_layer, build_norm_layer
 from .resnet import Bottleneck as _Bottleneck
 from .resnet import ResNet
 import torch.utils.model_zoo as model_zoo
-
+import logging
 class Bottleneck(_Bottleneck):
 
     def __init__(self, inplanes, planes, groups=1, base_width=4, **kwargs):
@@ -225,7 +225,7 @@ class ResNeXt(ResNet):
         model_dict = self.state_dict()
         #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         state_dict = model_zoo.load_url('https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth')
-        print('load imagenet model!!!!!!!!!!!!')
+        logging.info('load imagenet model!!!!!!!!!!!!')
         pretrained_dict = {k: v for k, v in state_dict.items()
                            if k in model_dict and model_dict[k].size() == v.size()}
 
