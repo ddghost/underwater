@@ -4,7 +4,7 @@ for i in range(1):
 	trainConfigFile = './configs/cascade_htc_x101_reTrain_multiTest_0404_testTrain.py'
 	outputTrainFile = 'ImageNet_train_{}'.format(i+1)
 
-	modelFile = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_imageNet_trainAndVal/epoch_{}.pth'.format(i+1)
+	modelFile = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_checkCurve_trainAndVal/epoch_{}.pth'.format(i+1)
 	os.system('{} {} {} 4  --format_only --options "jsonfile_prefix={}"'.format(exePath, trainConfigFile, modelFile, outputTrainFile) )
 	outputValFile = 'ImageNet_val_{}'.format(i+1)
 	valConfigFile = './configs/cascade_htc_x101_reTrain_multiTest_0404_testVal.py'
