@@ -1,5 +1,7 @@
 import torch
 
+from ..registry import BACKBONES
+
 @BACKBONES.register_module
 class imageNetRenext(nn.Module):
 	def __init__(self):
