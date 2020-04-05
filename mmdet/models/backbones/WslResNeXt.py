@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from ..registry import BACKBONES
-
+from torch.nn.modules.batchnorm import _BatchNorm
 @BACKBONES.register_module
 class WslResNeXt(nn.Module):
 	def __init__(self, **kwargs):
