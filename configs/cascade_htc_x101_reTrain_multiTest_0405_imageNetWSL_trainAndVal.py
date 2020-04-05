@@ -11,7 +11,7 @@ model = dict(
         base_width=8,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
-        frozen_stages=1,
+        frozen_stages=2,
         style='pytorch'),
     neck=dict(
         type='FPN',
@@ -219,7 +219,7 @@ data = dict(
         img_prefix=data_root + 'val/image/',
         pipeline=test_pipeline))
 # optimizer
-optimizer = dict(type='SGD', lr=0.0005, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(

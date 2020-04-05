@@ -241,8 +241,8 @@ class ResNeXt(ResNet):
         if(self.loadModel):
             self.loadModel = False
 
-            #model_dict = load_state_dict_from_url('https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth')
-            model_dict = torch.hub.load('facebookresearch/WSL-Images', 'resnext101_32x8d_wsl').state_dict()
+            model_dict = load_state_dict_from_url('https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth')
+            #model_dict = torch.hub.load('facebookresearch/WSL-Images', 'resnext101_32x8d_wsl').state_dict()
             self.load_state_dict(model_dict  )
         return super(ResNeXt, self).forward(x)
 		
