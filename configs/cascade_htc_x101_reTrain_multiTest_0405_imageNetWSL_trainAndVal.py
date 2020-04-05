@@ -5,7 +5,7 @@ model = dict(
     num_stages=3,
     pretrained=None,
     backbone=dict(
-        type='ResNeXt',
+        type='imageNetRenext',
         depth=101,
         groups=64,
         base_width=4,
@@ -215,8 +215,8 @@ data = dict(
         pipeline=val_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file= data_root + 'train/annotations/data.json',
-        img_prefix=data_root + 'train/image/',
+        ann_file=data_root + 'val/annotations/data.json',
+        img_prefix=data_root + 'val/image/',
         pipeline=test_pipeline))
 # optimizer
 optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
@@ -241,7 +241,7 @@ log_config = dict(
 total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_imageNet_trainAndVal'
-load_from = 'https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth'
+work_dir = './work_dirs/imageNetRenext'
+load_from = 'data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
 workflow = [('train', 1)]
