@@ -5,6 +5,7 @@ from ..registry import BACKBONES
 @BACKBONES.register_module
 class WslResNeXt(nn.Module):
 	def __init__(self, **kwargs):
+		super(WslResNeXt, self).__init__()
 		self.model = torch.hub.load( 'facebookresearch/WSL-Images', 'resnext101_32x8d_wsl')
 	
 	def forward(self,x):
