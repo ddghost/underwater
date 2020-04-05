@@ -190,7 +190,7 @@ class ResNeXt(ResNet):
         super(ResNeXt, self).__init__(**kwargs)
         self.groups = groups
         self.base_width = base_width
-
+        self.loadModel = False
         self.inplanes = 64
         self.res_layers = []
         for i, num_blocks in enumerate(self.stage_blocks):
@@ -220,4 +220,10 @@ class ResNeXt(ResNet):
             self.res_layers.append(layer_name)
 
         self._freeze_stages()
+    def forward(self, x):
+        if(self.loadModel):
+            self.loadModel = False
+            self.load_state_dict( torch.hub.load('facebookresearch/WSL-Images', 'resnext101_32x8d_wsl').state_dict() )
 
+        return super(ResNeXt, self).forward(x)
+		
