@@ -4,10 +4,10 @@ from ..registry import BACKBONES
 
 @BACKBONES.register_module
 class imageNetRenext(nn.Module):
-	def __init__(self):
+	def __init__(self**kwargs):
 		self.model = torch.hub.load( 'facebookresearch/WSL-Images', 'resnext101_32x8d_wsl')
 	
-	def forward(self):
+	def forward(self,x):
 		x = self.model.conv1(x)
 		x = self.model.norm1(x)
 		x = self.model.relu(x)
