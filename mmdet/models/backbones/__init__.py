@@ -3,4 +3,5 @@ from .resnet import ResNet, make_res_layer
 from .resnext import ResNeXt
 from .ssd_vgg import SSDVGG
 from .resnetDP import ResNetDP
-__all__ = ['ResNet', 'make_res_layer', 'ResNeXt', 'SSDVGG', 'HRNet', 'ResNetDP']
+from .imageNetRenext import imageNetRenext
+__all__ = ['ResNet', 'make_res_layer', 'ResNeXt', 'SSDVGG', 'HRNet', 'ResNetDP','imageNetRenext']
