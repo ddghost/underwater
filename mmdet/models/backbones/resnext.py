@@ -188,11 +188,11 @@ class ResNeXt(ResNet):
         152: (Bottleneck, (3, 8, 36, 3))
     }
 
-    def __init__(self, groups=1, base_width=4, **kwargs):
+    def __init__(self, groups=1, base_width=4, useImageNet=False, **kwargs):
         super(ResNeXt, self).__init__(**kwargs)
         self.groups = groups
         self.base_width = base_width
-        self.loadModel = True
+        self.loadModel = useImageNet
         self.inplanes = 64
         self.res_layers = []
         for i, num_blocks in enumerate(self.stage_blocks):
