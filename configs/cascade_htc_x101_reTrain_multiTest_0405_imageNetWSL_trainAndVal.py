@@ -3,7 +3,7 @@ fp16 = dict(loss_scale=512.)
 model = dict(
     type='CascadeRCNN',
     num_stages=3,
-    pretrained=None,
+    pretrained='https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth',
     backbone=dict(
         type='ResNeXt',
         depth=101,
@@ -242,6 +242,6 @@ total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/imageNetResNeXt'
-load_from = 'https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth'
+load_from = None
 resume_from = None
 workflow = [('train', 1)]
