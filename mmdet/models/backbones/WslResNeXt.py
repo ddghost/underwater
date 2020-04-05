@@ -3,7 +3,7 @@ import torch.nn as nn
 from ..registry import BACKBONES
 
 @BACKBONES.register_module
-class imageNetRenext(nn.Module):
+class WslResNeXt(nn.Module):
 	def __init__(self**kwargs):
 		self.model = torch.hub.load( 'facebookresearch/WSL-Images', 'resnext101_32x8d_wsl')
 	
