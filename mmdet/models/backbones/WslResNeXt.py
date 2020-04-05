@@ -13,7 +13,7 @@ class WslResNeXt(nn.Module):
 		
 	def forward(self,x):
 		x = self.model.conv1(x)
-		x = self.model.norm1(x)
+		x = self.model.bn1(x)
 		x = self.model.relu(x)
 		x = self.model.maxpool(x)
 		outs = []
@@ -34,8 +34,8 @@ class WslResNeXt(nn.Module):
 	
 	def _freeze_stages(self):
 		if self.frozen_stages >= 0:
-			self.model.norm1.eval()
-			for m in [self.model.conv1, self.model.norm1]:
+			self.model.bn1.eval()
+			for m in [self.model.conv1, self.model.bn1]:
 				for param in m.parameters():
 					param.requires_grad = False
 
