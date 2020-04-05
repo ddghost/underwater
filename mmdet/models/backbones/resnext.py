@@ -220,7 +220,7 @@ class ResNeXt(ResNet):
             self.res_layers.append(layer_name)
 
         self._freeze_stages()
-    def ResNeXt(self, state_dict, strict=True):
+    def load_state_dict(self, state_dict, strict=True):
         model_dict = self.state_dict()
         pretrained_dict = {k: v for k, v in state_dict.items()
                            if k in model_dict and model_dict[k].size() == v.size()}
@@ -233,7 +233,7 @@ class ResNeXt(ResNet):
             logging.info(('%s, ' * (len(not_loaded_keys) - 1) + '%s') % tuple(not_loaded_keys))
 
         model_dict.update(pretrained_dict)
-        super(WSDAN_Mutil, self).load_state_dict(model_dict)
+        super(ResNeXt, self).load_state_dict(model_dict)
 
     def forward(self, x):
         if(self.loadModel):
