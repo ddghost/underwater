@@ -43,7 +43,7 @@ class UnderwaterSample(CocoDataset):
         return img_infos
 
     def get_ann_info(self, idx):
-        p = 0.8
+        p = 0.2
         if(random.random() < p):
             img_info = self.img_infos[idx]
             img_id = img_info['id']
