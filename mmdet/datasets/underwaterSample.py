@@ -53,7 +53,7 @@ class UnderwaterSample(CocoDataset):
             ann_info = self.coco.loadAnns(ann_ids)
         else:
             if(idx >= len(self.img_infosAnother) ):
-                 idx = random.random(self.img_infosAnother ) 
+                 idx = random.random() * self.img_infosAnother
                  idx = math.floor(idx)
             img_info = self.img_infosAnother[idx]
             img_id = img_info['id']
