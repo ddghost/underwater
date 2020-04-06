@@ -27,6 +27,7 @@ class mixDataset(Dataset):
             if(idx >= self.__len__() ):
                  idx = random.random() * len(self.datasets[1])
                  idx = math.floor(idx)
+		print(idx, dataset_idx)
         return self.datasets[dataset_idx][idx]
 
 @DATASETS.register_module
@@ -48,8 +49,6 @@ class ConcatDataset(mixDataset):
             for i in range(0, len(datasets)):
                 flags.append(datasets[i].flag)
             self.flag = datasets[0].flag
-            print(len(datasets[0]), sum(datasets[0].flag),'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print(len(datasets[1]), sum(datasets[1].flag),'***********************************')
 
 
 @DATASETS.register_module
