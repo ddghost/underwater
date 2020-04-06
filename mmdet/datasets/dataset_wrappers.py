@@ -24,7 +24,7 @@ class mixDataset(Dataset):
             dataset_idx = 0
         else:
             dataset_idx = 1
-            if(idx >= self.__len__() ):
+            if(idx >= len(self.datasets[1]) ):
                  idx = random.random() * len(self.datasets[1])
                  idx = math.floor(idx)
         print(idx, dataset_idx)
