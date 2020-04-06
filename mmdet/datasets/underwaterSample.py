@@ -11,7 +11,7 @@ class UnderwaterSample(CocoDataset):
 
     CLASSES = ('holothurian', 'echinus', 'scallop', 'starfish')
 
-    def load_annotations(self, ann_files):
+    def load_annotations(self, ann_file):
         #ann_files(big,small)
         self.coco = COCO(ann_files[0])
         self.cat_ids = self.coco.getCatIds()
