@@ -13,6 +13,7 @@ class UnderwaterSample(CocoDataset):
 
     def load_annotations(self, ann_file):
         #ann_file(big,small)
+        print(ann_file,'!!!!!!!!!!!!!!!')
         self.coco = COCO(ann_file[0])
         self.cat_ids = self.coco.getCatIds()
         self.cat2label = {
