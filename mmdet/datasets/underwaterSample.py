@@ -64,13 +64,13 @@ class UnderwaterSample(CocoDataset):
         return self._parse_ann_info(img_info, ann_info)
 
     def _filter_imgs(self, min_size=32):
-        return super(self)._filter_imgs(min_size)
+        return super(UnderwaterSample, self)._filter_imgs(min_size)
 
     def _parse_ann_info(self, img_info, ann_info):
-        return super(self)._parse_ann_info(img_info, ann_info)
+        return super(UnderwaterSample, self)._parse_ann_info(img_info, ann_info)
 
     def format_results(self, results, **kwargs):
-        return super(self).format_results(results, **kwargs)
+        return super(UnderwaterSample, self).format_results(results, **kwargs)
 
     def prepare_test_img(self, idx):
-        return super(self).prepare_test_img(idx)
+        return super(UnderwaterSample, self).prepare_test_img(idx)
