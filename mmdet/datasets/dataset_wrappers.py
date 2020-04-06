@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import random
-from torch.utils.data import dataset
+from torch.utils.data import Dataset
 from .registry import DATASETS
 
 
