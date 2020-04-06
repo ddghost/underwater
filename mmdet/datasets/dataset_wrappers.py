@@ -27,7 +27,7 @@ class mixDataset(Dataset):
             if(idx >= len(self.datasets[1]) ):
                  idx = random.random() * len(self.datasets[1])
                  idx = math.floor(idx)
-        print(idx, dataset_idx)
+
         return self.datasets[dataset_idx][idx]
 
 @DATASETS.register_module
