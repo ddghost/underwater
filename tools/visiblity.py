@@ -59,15 +59,14 @@ def parse_args():
 
 def main():
     args = parse_args()
-    tempImg = mmcv.imread('./data/train/image/002196.jpg', 'color')
 
     cfg = Config.fromfile(args.config)
     datasets = build_dataset(cfg.data.train)
-    imgNp = datasets[1]['img'].data.numpy().copy()
-    
-    imgNp = np.swapaxes(imgNp,0,2)
-    imgNp = np.swapaxes(imgNp,0,1)
-
+    for i in range(20):
+        imgNp = datasets[1]['img'].data.numpy().copy()
+        imgNp = np.swapaxes(imgNp,0,2)
+        imgNp = np.swapaxes(imgNp,0,1)
+        print(imgNp.shape)
     #cv2.imwrite('example.png', imgNp )
 
 

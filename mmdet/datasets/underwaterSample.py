@@ -42,9 +42,6 @@ class UnderwaterSample(CocoDataset):
         
         return img_infos
 
-
-
-
     def get_ann_info(self, idx):
         p = 0.8
         if(random.random() < p):
@@ -52,6 +49,7 @@ class UnderwaterSample(CocoDataset):
             img_id = img_info['id']
             ann_ids = self.coco.getAnnIds(imgIds=[img_id])
             ann_info = self.coco.loadAnns(ann_ids)
+
         else:
             if(idx >= len(self.img_infosAnother) ):
                  idx = random.random() * len(self.img_infosAnother)
