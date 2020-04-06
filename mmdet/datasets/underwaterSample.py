@@ -35,8 +35,8 @@ class UnderwaterSample(CocoDataset):
         }
         self.img_idsAnother = self.cocoAnother.getImgIds()
         self.img_infosAnother = []
-        for i in selfAnother.img_ids:
-            info = selfAnother.coco.loadImgs([i])[0]
+        for i in self.img_idsAnother:
+            info = self.cocoAnother.loadImgs([i])[0]
             info['filename'] = info['file_name']
             img_infosAnother.append(info)
         

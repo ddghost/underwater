@@ -54,7 +54,7 @@ class CustomDataset(Dataset):
         # join paths if data_root is specified
         if self.data_root is not None:
             if not osp.isabs(self.ann_file):
-                print(isinstance(self.ann_file, list),'!!!!!!!!!!!!!!!!!!!!' )
+                
                 if(isinstance(self.ann_file, list)):
                     self.ann_file = [osp.join(self.data_root, single_ann_file) for single_ann_file in self.ann_file]
                 else:
@@ -68,7 +68,7 @@ class CustomDataset(Dataset):
                 self.proposal_file = osp.join(self.data_root,
                                               self.proposal_file)
         # load annotations (and proposals)
-        print(self.ann_file,'!!!!!!!!!!!!!!!!!!!!!!!!!!!',ann_file)
+        
         self.img_infos = self.load_annotations(self.ann_file)
         if self.proposal_file is not None:
             self.proposals = self.load_proposals(self.proposal_file)
