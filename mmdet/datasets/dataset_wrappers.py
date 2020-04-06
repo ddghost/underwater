@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import random
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, IterableDataset
 from .registry import DATASETS
 
 
