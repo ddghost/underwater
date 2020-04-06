@@ -1,11 +1,36 @@
 import numpy as np
-from torch.utils.data.dataset import ConcatDataset as _ConcatDataset
+import math
+import
 
 from .registry import DATASETS
 
 
+class mixDataset(Dataset):
+
+    def __init__(self, datasets):
+        super(ConcatDataset, self).__init__()
+        assert len(datasets) > 0, 'datasets should not be an empty iterable'
+        self.datasets = list(datasets)
+        for d in self.datasets:
+            assert not isinstance(d, IterableDataset), "mixDataset does not support IterableDataset"
+        self.pickPossibility = 0.2
+
+    def __len__(self):
+        return self.datasets[0]
+
+    def __getitem__(self, idx):
+
+        if(random.random() < self.pickPossibility):
+            dataset_idx = 0
+        else:
+            dataset_idx = 1
+            if(idx >= self.__len__() ):
+                 idx = random.random() * len(self.datasets[1])
+                 idx = math.floor(idx)
+        return self.datasets[dataset_idx][idx]
+
 @DATASETS.register_module
-class ConcatDataset(_ConcatDataset):
+class ConcatDataset(mixDataset):
     """A wrapper of concatenated dataset.
 
     Same as :obj:`torch.utils.data.dataset.ConcatDataset`, but
@@ -22,7 +47,9 @@ class ConcatDataset(_ConcatDataset):
             flags = []
             for i in range(0, len(datasets)):
                 flags.append(datasets[i].flag)
-            self.flag = np.concatenate(flags)
+            self.flag = datasets[0].flag
+            print(datasets[0].flag,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print(datasets[1].flag,'***********************************')
 
 
 @DATASETS.register_module
