@@ -11,7 +11,6 @@ class Underwater(CocoDataset):
     CLASSES = ('holothurian', 'echinus', 'scallop', 'starfish')
 
     def load_annotations(self, ann_file):
-        print(ann_file,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         self.coco = COCO(ann_file)
         self.cat_ids = self.coco.getCatIds()
         self.cat2label = {
@@ -42,4 +41,4 @@ class Underwater(CocoDataset):
         return super(Underwater, self).format_results(results, **kwargs)
 
     def prepare_test_img(self, idx):
-        return super(self).prepare_test_img(idx)
+        return super(Underwater, self).prepare_test_img(idx)
