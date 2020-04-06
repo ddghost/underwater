@@ -160,7 +160,7 @@ test_cfg = dict(
     rcnn=dict(
         score_thr=0.0001, nms=dict(type='soft_nms', iou_thr=0.5, min_score=0.0001), max_per_img=200))
 # dataset settings
-train_dataset_type = 'UnderwaterSample'
+train_dataset_type = 'Underwater'
 test_dataset_type = 'Underwater'
 data_root = 'data/'
 img_norm_cfg = dict(
