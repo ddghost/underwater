@@ -187,7 +187,7 @@ class Resize(object):
         results['scale_idx'] = scale_idx
 
     def _resize_img(self, results):
-        print(results['img'].shape)
+
         if self.keep_ratio:
             img, scale_factor = mmcv.imrescale(
                 results['img'], results['scale'], return_scale=True)
