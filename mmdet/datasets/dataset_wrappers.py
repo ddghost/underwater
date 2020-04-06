@@ -8,7 +8,7 @@ from .registry import DATASETS
 class mixDataset(Dataset):
 
     def __init__(self, datasets):
-        super(ConcatDataset, self).__init__()
+        super(mixDataset, self).__init__()
         assert len(datasets) > 0, 'datasets should not be an empty iterable'
         self.datasets = list(datasets)
         for d in self.datasets:
