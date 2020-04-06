@@ -12,8 +12,8 @@ class UnderwaterSample(CocoDataset):
     CLASSES = ('holothurian', 'echinus', 'scallop', 'starfish')
 
     def load_annotations(self, ann_file):
-        #ann_files(big,small)
-        self.coco = COCO(ann_files[0])
+        #ann_file(big,small)
+        self.coco = COCO(ann_file[0])
         self.cat_ids = self.coco.getCatIds()
         self.cat2label = {
             cat_id: i + 1
@@ -26,7 +26,7 @@ class UnderwaterSample(CocoDataset):
             info['filename'] = info['file_name']
             img_infos.append(info)
 
-        self.cocoAnother = COCO(ann_files[1])
+        self.cocoAnother = COCO(ann_file[1])
         self.cat_idsAnother = self.cocoAnother.getCatIds()
         self.cat2labelAnother = {
             cat_id: i + 1
