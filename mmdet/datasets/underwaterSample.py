@@ -17,9 +17,9 @@ class UnderwaterSample():
     def get_ann_info(self, idx):
         p = 0.2
         if(random.random() < p):
-            return self.UnderwaterBig(idx)
+            return self.UnderwaterBig.get_ann_info(idx)
 
         else:
-            return self.UnderwaterSmall(idx)
+            return self.UnderwaterSmall.get_ann_info(idx)
 
 
