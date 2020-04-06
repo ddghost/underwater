@@ -8,6 +8,7 @@ from .registry import DATASETS
 
 @DATASETS.register_module
 class UnderwaterSample():
+    CLASSES = ('holothurian', 'echinus', 'scallop', 'starfish')
     def __init__(self, ann_file, **kwags):
         self.UnderwaterBig = Underwater(ann_file[0], **kwags)
         self.UnderwaterSmall = Underwater(ann_file[1], **kwags)
