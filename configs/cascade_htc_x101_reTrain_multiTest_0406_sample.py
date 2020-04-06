@@ -196,7 +196,7 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=train_dataset_type,
-        ann_file=(data_root+'train/annotations/train_-1_3800.json',data_root+'train/annotations/train_3800_10000.json'),
+        ann_file=[data_root+'train/annotations/train_-1_3800.json',data_root+'train/annotations/train_3800_10000.json'],
         img_prefix=data_root + 'train/image/',
         pipeline=train_pipeline),
     test=dict(
@@ -227,7 +227,7 @@ log_config = dict(
 total_epochs = 17
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_twoDataset_small'
+work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_twoDataset_sample'
 load_from = 'data/pretrained/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth'
 resume_from = None
 workflow = [('train', 1)]
