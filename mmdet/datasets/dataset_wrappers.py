@@ -16,7 +16,7 @@ class mixDataset(Dataset):
         self.pickPossibility = 0.2
 
     def __len__(self):
-        return self.datasets[0]
+        return len(self.datasets[0])
 
     def __getitem__(self, idx):
 
@@ -48,8 +48,8 @@ class ConcatDataset(mixDataset):
             for i in range(0, len(datasets)):
                 flags.append(datasets[i].flag)
             self.flag = datasets[0].flag
-            print(datasets[0].flag,'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print(datasets[1].flag,'***********************************')
+            print(len(datasets[0]), sum(datasets[0].flag),'!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print(len(datasets[1]), sum(datasets[1].flag),'***********************************')
 
 
 @DATASETS.register_module
