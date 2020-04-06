@@ -13,7 +13,7 @@ class mixDataset(Dataset):
         self.datasets = list(datasets)
         for d in self.datasets:
             assert not isinstance(d, IterableDataset), "mixDataset does not support IterableDataset"
-        self.pickPossibility = 0.2
+        self.pickPossibility = 1
 
     def __len__(self):
         return len(self.datasets[0])
