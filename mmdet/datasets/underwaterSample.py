@@ -4,10 +4,10 @@ import random
 import math
 from .underwater import Underwater
 from .registry import DATASETS
-
+from torch.utils.data import Dataset
 
 @DATASETS.register_module
-class UnderwaterSample():
+class UnderwaterSample(Dataset):
     CLASSES = ('holothurian', 'echinus', 'scallop', 'starfish')
     def __init__(self, ann_file, **kwags):
         self.UnderwaterBig = Underwater(ann_file[0], **kwags)
