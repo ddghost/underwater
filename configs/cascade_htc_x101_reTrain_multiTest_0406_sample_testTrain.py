@@ -201,7 +201,7 @@ data = dict(
         pipeline=train_pipeline),
     test=dict(
         type=test_dataset_type,
-        ann_file=data_root+'train/annotations/train_-1_3800.json',
+        ann_file=data_root+'train/annotations/train_3800_10000.json',
         img_prefix=data_root + 'train/image/',
         pipeline=test_pipeline))
 # optimizer
