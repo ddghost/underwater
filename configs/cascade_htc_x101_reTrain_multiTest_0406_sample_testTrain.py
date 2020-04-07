@@ -180,7 +180,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=[(10000, 900],
+        img_scale=[(10000, 900)],
         flip=True,
         transforms=[
             dict(type='Resize', keep_ratio=True),
