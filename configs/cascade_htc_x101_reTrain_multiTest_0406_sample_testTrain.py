@@ -222,6 +222,7 @@ log_config = dict(
         dict(type='TextLoggerHook'),
         # dict(type='TensorboardLoggerHook')
     ])
+
 # yapf:enable
 # runtime settings
 total_epochs = 17

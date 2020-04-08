@@ -213,8 +213,8 @@ lr_config = dict(
     warmup='linear',
     warmup_iters=500,
     warmup_ratio=1.0 / 3,
-    step=[8, 11])
-checkpoint_config = dict(interval=12)
+    step=[11, 15])
+checkpoint_config = dict(interval=17)
 # yapf:disable
 log_config = dict(
     interval=50,
@@ -224,7 +224,7 @@ log_config = dict(
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 12
+total_epochs = 17
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_-1_3800'
