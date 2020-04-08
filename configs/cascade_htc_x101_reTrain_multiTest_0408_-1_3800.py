@@ -161,8 +161,7 @@ test_cfg = dict(
         score_thr=0.0001, nms=dict(type='soft_nms', iou_thr=0.5, min_score=0.0001), max_per_img=200))
 # dataset settings
 dataset_type = 'Underwater'
-data_root = 'data/'
-test_data_root = 'data:(-1, 3800)/'
+data_root = 'newData_0408_-1_3800/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -180,7 +179,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=[(3072, 450), (3072, 600), (3072, 750),(4096, 600), (4096, 800), (4096, 1000),(5120, 750), (5120, 1000), (5120, 1250), (6144, 900), (6144, 1200), (6144, 1500)],
+        img_scale=[(10000,900)],
         flip=True,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -196,14 +195,14 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file='data/train/annotations/train_-1_3800.json',
+        ann_file= data_root + 'train/annotations/data.json',
         img_prefix=data_root + 'train/image/',
         pipeline=train_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file='data/train/annotations/testA_-1_3800.json',
-        img_prefix=test_data_root + 'test-A-image/',
-        pipeline=test_pipeline))
+        ann_file=data_root + 'val/annotations/data.json',
+        img_prefix=data_root + 'val/image/',
+        pipeline=test_pipeline)))
 # optimizer
 optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
