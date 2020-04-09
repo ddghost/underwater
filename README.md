@@ -45,7 +45,7 @@
 * ./tools/dist_test.sh configs/cascade_rcnn_r50_fpn_1x.py ./work_dirs/cascade_rcnn_r50_fpn_1x/latest.pth 4  --format_only --options "jsonfile_prefix=./cas_r50"
 * mv cas_r50.bbox.json results
 在submit文件夹生成结果
-* python tools/post_process/json2submit.py --test_json cas_r50.bbox.json --submit_file cas_r50.csv
+* python tools/post_process/json2submit.py --ori_json  data/train/annotations/testA.json --test_json cas_r50.bbox.json --submit_file cas_r50.csv
 
  
 #CUDA_VISIBLE_DEVICES
