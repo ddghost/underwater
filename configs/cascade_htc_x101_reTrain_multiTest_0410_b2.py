@@ -227,6 +227,6 @@ total_epochs = 5
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/cas_x101_64x4d_fpn_htc_reTrain_400_1400'
-load_from = 'data/pretrained/work_dirs/best/latest.pth'
+load_from = 'work_dirs/best/latest.pth'
 resume_from = None
 workflow = [('train', 1)]
